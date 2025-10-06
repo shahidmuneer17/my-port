@@ -40,18 +40,54 @@ const DATA = {
         "Designed SaaS wallet systems, transaction tools, and real-time reporting dashboards.",
         "Built secure REST APIs & microservices, integrated Web3.js features.",
         "Managed AWS (EC2, RDS, S3) and optimized NGINX for high availability.",
+        "Worked closely with product, QA, and compliance teams to meet fintech standards and data protection policies.",
+        "Developed hi-quality mobile apps using Flutter connected with Laravel API for smooth integration for users to do mobile banking in secure and easy ways including Crypto Transfers & Card Management."
+      ],
+    },
+    {
+      role: "Full Stack / Senior Web Developer (Remote)",
+      company: "DTECHSOL – UK (Remote)",
+      time: "Aug 2020 – Nov 2023",
+      bullets: [
+        "Delivered secure and scalable SaaS applications and fintech platforms to UK-based clients.",
+        "Developed modern UI interfaces and backend logic using Laravel, Vue.js, Node.js, and MySQL/PostgreSQL.",
+        "Built API-based integrations with third-party services, including payment processors and analytics.",
+        "Ensured mobile responsiveness and performance through optimized frontend practices and backend logic.",
+      ],
+    },
+    {
+      role: "Full Stack / Senior Web Developer",
+      company: "Government of Punjab – Lahore, Pakistan",
+      time: "Jan 2017 – Aug 2023 | On-site",
+      bullets: [
+        "Spearheaded the development of healthcare and public service portals used across multiple districts.",
+        "Built modular frontends using React and Angular, integrated with Laravel-powered backends.",
+        "Managed large databases and implemented REST APIs for secure communication and data handling.",
+        "Conducted thorough code reviews and led deployments across multiple platforms",
+      ],
+    },
+    {
+      role: "Web Developer",
+      company: "NIUM Fintech Ltd – Lahore, Pakistan",
+      time: "Mar 2010 – Dec 2016 | Hybrid",
+      bullets: [
+        "Maintained and developed over 150 client web platforms, primarily in fintech and B2B service models.",
+        "Developed custom CMS features and APIs using Laravel, JavaScript, and HTML/CSS.",
+        "Designed and implemented automated deployment pipelines for production environments.",
+        "Worked on WHMCS integration, e-commerce features, and scalable backends.",
       ],
     },
   ],
   projects: [
     {
-      name: "Cloud-Native Banking Wallet (SaaS)",
+      name: "Full Working Banking Solution (SaaS)",
       description: "Multi-tenant wallet with role-based access and real-time transaction dashboards.",
-      tech: ["Laravel", "React", "AWS", "RDS", "Docker"],
+      tech: ["Laravel", "Vue JS", "Vuetify 3"],
       screenshot: "/images/projects/wallet-saas.png",
-      liveUrl: "https://example.com/wallet-saas",
-      repoUrl: "",
-      demo: { username: "demo@company.com", password: "Demo@123" },
+      liveUrl: "https://bank-main-ooi8b0.laravel.cloud/login",
+      repoUrl: "https://github.com/shahidmuneer17/bank",
+      adminDemo: { username: "bankadmin@mbank.com", password: "Dubai@1234" },
+      demo: { username: "testuser@company.com", password: "Dubai@1234" },
     },
   ],
   gallery: [
@@ -106,7 +142,9 @@ function Navbar({ dark, setDark }) {
     <header className="sticky top-0 z-40 border-b border-white/60 backdrop-blur bg-white/70 supports-[backdrop-filter]:bg-white/60 dark:border-slate-800 dark:bg-slate-900/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#about" className="flex items-center gap-3">
-          <span className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white grid place-content-center font-semibold">S</span>
+          <span className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white grid place-content-center font-semibold">
+            <img src="/images/gallery/myphoto.jpg" />
+          </span>
           <div className="leading-tight">
             <div className="font-semibold">{DATA.name}</div>
             <div className="text-xs text-zinc-500">{DATA.title}</div>
@@ -242,15 +280,18 @@ const Projects = () => (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {DATA.projects.map((p, idx) => (
         <article key={idx} className="rounded-2xl border border-zinc-200 overflow-hidden bg-white/80 backdrop-blur shadow-sm hover:-translate-y-1 transition dark:border-slate-700 dark:bg-slate-800/60">
-          <div className="aspect-video bg-gradient-to-br from-sky-100 via-indigo-100 to-fuchsia-100"></div>
+          <div className="aspect-video bg-gradient-to-br from-sky-100 via-indigo-100 to-fuchsia-100">
+            <img src={p.screenshot}/>
+          </div>
           <div className="p-5">
             <h3 className="font-semibold text-base flex items-center gap-2">{p.name}</h3>
             <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300 min-h-12">{p.description}</p>
             <div className="mt-3 -m-1">{p.tech.map((t) => (<Pill key={t}>{t}</Pill>))}</div>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
               {p.liveUrl && (<a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <ExternalLink className="size-4" /> Live</a>)}
-              {p.repoUrl && (<a href={p.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <LinkIcon className="size-4" /> Code</a>)}
-              {p.demo && (<div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/70 text-zinc-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:text-zinc-300"><LogIn className="size-4" /><span className="text-xs sm:text-sm"><strong>User:</strong> {p.demo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.demo.password}</span></div>)}
+              {p.repoUrl && (<a href={p.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <LinkIcon className="size-4" /> Code (Prviate Repo)</a>)}
+              {p.adminDemo && (<div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/70 text-zinc-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:text-zinc-300"><LogIn className="size-4" /><span className="text-xs sm:text-sm"><strong>Admin Portal Email:</strong> {p.adminDemo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.adminDemo.password}</span></div>)}
+              {p.demo && (<div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/70 text-zinc-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:text-zinc-300"><LogIn className="size-4" /><span className="text-xs sm:text-sm"><strong>User Portal Email:</strong> {p.demo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.demo.password}</span></div>)}
             </div>
           </div>
         </article>
