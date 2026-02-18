@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -14,7 +13,7 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
 
 const DATA = {
   name: "Shahid Munir",
-  title: "Full Stack Developer",
+  title: "Senior Full Stack & Cloud Developer", // <-- Upgraded Title
   location: "Dubai, UAE (Open to relocation)",
   phone: "+971-561095772",
   email: "shahidmuneer17@gmail.com",
@@ -23,12 +22,14 @@ const DATA = {
     linkedin: "https://linkedin.com/in/shahid-muneer-239470195/",
     resume: "#",
   },
-  summary: "Highly skilled and versatile Full Stack Developer with 10+ years’ experience across banking, SaaS, and Web3/Blockchain. Expert in Laravel, React, Vue, Node, and AWS; strong in API design, secure architectures, and cloud-native delivery.",
+  // <-- Upgraded Summary (Added TypeScript, Serverless, DynamoDB)
+  summary: "Highly skilled and versatile Senior Full Stack Developer with 10+ years’ experience across banking, SaaS, and Web3/Blockchain. Expert in TypeScript, React, Node.js, and Laravel. Specializes in designing secure, highly scalable serverless architectures (AWS Lambda, DynamoDB) and cloud-native API delivery with strict ACID compliance.",
   skills: [
-    { label: "Frontend", items: ["React.js", "Vue.js", "Angular", "HTML5", "Tailwind CSS", "Material-UI"], icon: <MonitorSmartphone className="size-5" /> },
-    { label: "Backend", items: ["PHP", "Laravel", "Node.js", "REST APIs", "SaaS Architectures", "Web3 integration"], icon: <Server className="size-5" /> },
-    { label: "Databases", items: ["MySQL", "PostgreSQL", "MongoDB"], icon: <Database className="size-5" /> },
-    { label: "DevOps / Infra", items: ["AWS", "NGINX", "Docker", "CI/CD"], icon: <Cloud className="size-5" /> },
+    { label: "Frontend", items: ["React.js", "Vue.js", "TypeScript", "Angular", "Tailwind CSS", "Material-UI"], icon: <MonitorSmartphone className="size-5" /> },
+    // <-- Upgraded Backend & DB Skills
+    { label: "Backend", items: ["Node.js", "TypeScript", "Serverless Framework", "PHP / Laravel", "Microservices", "REST APIs", "Web3 integration"], icon: <Server className="size-5" /> },
+    { label: "Databases", items: ["PostgreSQL", "DynamoDB (NoSQL)", "MySQL", "MongoDB", "Redis"], icon: <Database className="size-5" /> },
+    { label: "DevOps / Infra", items: ["AWS (Lambda, API Gateway, EC2, S3)", "GitHub Actions (CI/CD)", "Docker", "NGINX"], icon: <Cloud className="size-5" /> },
   ],
   experience: [
     {
@@ -36,12 +37,12 @@ const DATA = {
       company: "Syncom Technology DIFC – Dubai, UAE",
       time: "Nov 2023 – Present",
       bullets: [
+        "Architected scalable, event-driven serverless microservices using AWS Lambda, DynamoDB, and TypeScript for high-volume financial transactions.", // <-- Added your new architectural skills here
         "Led full-stack development for cloud-native banking & blockchain platforms using Laravel, React, Angular, and Flutter.",
         "Designed SaaS wallet systems, transaction tools, and real-time reporting dashboards.",
         "Built secure REST APIs & microservices, integrated Web3.js features.",
-        "Managed AWS (EC2, RDS, S3) and optimized NGINX for high availability.",
-        "Worked closely with product, QA, and compliance teams to meet fintech standards and data protection policies.",
-        "Developed hi-quality mobile apps using Flutter connected with Laravel API for smooth integration for users to do mobile banking in secure and easy ways including Crypto Transfers & Card Management."
+        "Managed AWS infrastructure and implemented GitHub Actions CI/CD pipelines for automated, type-safe deployments.",
+        "Worked closely with product, QA, and compliance teams to meet fintech standards and data protection policies."
       ],
     },
     {
@@ -79,6 +80,15 @@ const DATA = {
     },
   ],
   projects: [
+    // <-- ADDED YOUR NEW POC PROJECT
+    {
+      name: "Serverless Crypto-to-Fiat Exchange Engine",
+      description: "Production-ready, event-driven microservice handling high-volume crypto webhooks. Features strict ACID compliance via DynamoDB TransactWriteItems and zero-cost idempotency.",
+      tech: ["TypeScript", "AWS Lambda", "DynamoDB", "Serverless Framework"],
+      screenshot: "/images/projects/code.png", // Using an existing image, you can update this later
+      liveUrl: "https://5jhzwxkp9e.execute-api.us-east-1.amazonaws.com/", // Replace with your AWS API Gateway URL if you want it public
+      repoUrl: "https://github.com/shahidmuneer17/poc-mini", // Update to your actual repo URL
+    },
     {
       name: "Full Working Banking Solution (SaaS)",
       description: "Multi-tenant wallet with role-based access and real-time transaction dashboards.",
@@ -127,7 +137,6 @@ const Pill = ({ children }) => (
   <span className="inline-flex items-center rounded-full border border-zinc-200/70 bg-white/70 backdrop-blur px-3 py-1 text-xs sm:text-sm leading-6 mr-2 mb-2 shadow-sm hover:shadow transition-transform duration-300 will-change-transform hover:-translate-y-0.5">{children}</span>
 );
 
-// NEW: Navbar with icons, active state highlight, and working theme toggle
 function Navbar({ dark, setDark }) {
   const items = [
     { id: "about", label: "About", icon: <Info className="size-4" /> },
@@ -142,8 +151,8 @@ function Navbar({ dark, setDark }) {
     <header className="sticky top-0 z-40 border-b border-white/60 backdrop-blur bg-white/70 supports-[backdrop-filter]:bg-white/60 dark:border-slate-800 dark:bg-slate-900/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#about" className="flex items-center gap-3">
-          <span className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white grid place-content-center font-semibold">
-            <img src="/images/gallery/myphoto.jpg" />
+          <span className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white grid place-content-center font-semibold overflow-hidden">
+            <img src="/images/gallery/myphoto.jpg" alt="Profile" className="w-full h-full object-cover" />
           </span>
           <div className="leading-tight">
             <div className="font-semibold">{DATA.name}</div>
@@ -186,22 +195,22 @@ function Navbar({ dark, setDark }) {
 
 function Hero() {
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden" id="about">
       {/* Pastel halo */}
       <motion.div aria-hidden initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}
         className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl" />
-        <div className="absolute top-24 -right-20 h-72 w-72 rounded-full bg-fuchsia-200/60 blur-3xl" />
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-indigo-200/60 blur-3xl" />
+        <div className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl dark:bg-sky-900/20" />
+        <div className="absolute top-24 -right-20 h-72 w-72 rounded-full bg-fuchsia-200/60 blur-3xl dark:bg-fuchsia-900/20" />
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-indigo-200/60 blur-3xl dark:bg-indigo-900/20" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900 bg-clip-text text-transparent">{DATA.name}</span>
+              <span className="bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900 bg-clip-text text-transparent dark:from-white dark:via-zinc-300 dark:to-white">{DATA.name}</span>
             </h1>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-300">{DATA.title}</p>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-300 font-medium">{DATA.title}</p>
             <p className="mt-6 leading-7 text-zinc-700 dark:text-zinc-300 max-w-2xl">{DATA.summary}</p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
               <a href={`mailto:${DATA.email}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow transition hover:-translate-y-0.5 dark:border-slate-700 dark:bg-slate-800/60">
@@ -231,13 +240,13 @@ function Hero() {
 
           <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}
             className="rounded-2xl border border-zinc-200 p-6 lg:p-8 bg-white/70 backdrop-blur shadow-sm dark:border-slate-700 dark:bg-slate-800/60">
-            <h3 className="font-semibold mb-4">At a glance</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex gap-3"><Briefcase className="size-4 mt-0.5" /> 10+ years experience</li>
-              <li className="flex gap-3"><ShieldCheck className="size-4 mt-0.5" /> Fintech, SaaS & Web3</li>
-              <li className="flex gap-3"><Cloud className="size-4 mt-0.5" /> AWS, Docker, NGINX</li>
-              <li className="flex gap-3"><Server className="size-4 mt-0.5" /> Laravel, Node.js, REST APIs</li>
-              <li className="flex gap-3"><MonitorSmartphone className="size-4 mt-0.5" /> React, Vue, Angular</li>
+            <h3 className="font-semibold mb-4 text-zinc-900 dark:text-white">At a glance</h3>
+            <ul className="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+              <li className="flex gap-3"><Briefcase className="size-4 mt-0.5 text-sky-500" /> 10+ years experience</li>
+              <li className="flex gap-3"><ShieldCheck className="size-4 mt-0.5 text-sky-500" /> Fintech, SaaS & Web3</li>
+              <li className="flex gap-3"><Cloud className="size-4 mt-0.5 text-sky-500" /> AWS Lambda, DynamoDB, CI/CD</li>
+              <li className="flex gap-3"><Server className="size-4 mt-0.5 text-sky-500" /> TypeScript, Node.js, Laravel</li>
+              <li className="flex gap-3"><MonitorSmartphone className="size-4 mt-0.5 text-sky-500" /> React, Vue, Angular</li>
             </ul>
           </motion.div>
         </div>
@@ -251,7 +260,7 @@ const Skills = () => (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {DATA.skills.map((cat) => (
         <div key={cat.label} className="rounded-2xl border border-zinc-200 p-6 bg-white/70 backdrop-blur shadow-sm hover:-translate-y-1 transition dark:border-slate-700 dark:bg-slate-800/60">
-          <div className="flex items-center gap-2 mb-3">{cat.icon}<h3 className="font-semibold">{cat.label}</h3></div>
+          <div className="flex items-center gap-2 mb-3 text-zinc-900 dark:text-white">{cat.icon}<h3 className="font-semibold">{cat.label}</h3></div>
           <div className="-m-1">{cat.items.map((it) => (<Pill key={it}>{it}</Pill>))}</div>
         </div>
       ))}
@@ -266,9 +275,9 @@ const Experience = () => (
         <li key={i} className="mb-10 ml-2">
           <span className="absolute -left-[9px] mt-1 grid size-4 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500" />
           <div className="flex items-center gap-2 text-sm text-zinc-500 mb-1 dark:text-zinc-400"><Calendar className="size-4" />{job.time}</div>
-          <h3 className="text-lg font-semibold">{job.role}</h3>
-          <p className="text-zinc-600 dark:text-zinc-300">{job.company}</p>
-          {job.bullets && (<ul className="mt-2 list-disc ml-5 space-y-1 text-zinc-700 dark:text-zinc-300">{job.bullets.map((b, idx) => (<li key={idx}>{b}</li>))}</ul>)}
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{job.role}</h3>
+          <p className="text-zinc-600 dark:text-zinc-300 font-medium">{job.company}</p>
+          {job.bullets && (<ul className="mt-3 list-disc ml-5 space-y-1.5 text-zinc-700 dark:text-zinc-300 text-sm sm:text-base">{job.bullets.map((b, idx) => (<li key={idx}>{b}</li>))}</ul>)}
         </li>
       ))}
     </ol>
@@ -276,23 +285,28 @@ const Experience = () => (
 );
 
 const Projects = () => (
-  <Section id="projects" title="Selected Projects (with demo access)">
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <Section id="projects" title="Selected Projects">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
       {DATA.projects.map((p, idx) => (
-        <article key={idx} className="rounded-2xl border border-zinc-200 overflow-hidden bg-white/80 backdrop-blur shadow-sm hover:-translate-y-1 transition dark:border-slate-700 dark:bg-slate-800/60">
-          <div className="aspect-video bg-gradient-to-br from-sky-100 via-indigo-100 to-fuchsia-100">
-            <img src={p.screenshot}/>
+        <article key={idx} className="rounded-2xl border border-zinc-200 overflow-hidden bg-white/80 backdrop-blur shadow-sm hover:-translate-y-1 transition dark:border-slate-700 dark:bg-slate-800/60 flex flex-col">
+          <div className="aspect-video bg-gradient-to-br from-sky-100 via-indigo-100 to-fuchsia-100 dark:from-slate-800 dark:to-slate-900">
+            <img src={p.screenshot} alt={p.name} className="w-full h-full object-cover" />
           </div>
-          <div className="p-5">
-            <h3 className="font-semibold text-base flex items-center gap-2">{p.name}</h3>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300 min-h-12">{p.description}</p>
-            <div className="mt-3 -m-1">{p.tech.map((t) => (<Pill key={t}>{t}</Pill>))}</div>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
+          <div className="p-5 flex-1 flex flex-col">
+            <h3 className="font-semibold text-lg text-zinc-900 dark:text-white">{p.name}</h3>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300 flex-1">{p.description}</p>
+            <div className="mt-4 -m-1">{p.tech.map((t) => (<Pill key={t}>{t}</Pill>))}</div>
+            <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
               {p.liveUrl && (<a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <ExternalLink className="size-4" /> Live</a>)}
-              {p.repoUrl && (<a href={p.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <LinkIcon className="size-4" /> Code (Prviate Repo)</a>)}
-              {p.adminDemo && (<div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/70 text-zinc-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:text-zinc-300"><LogIn className="size-4" /><span className="text-xs sm:text-sm"><strong>Admin Portal Email:</strong> {p.adminDemo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.adminDemo.password}</span></div>)}
-              {p.demo && (<div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/70 text-zinc-700 shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:text-zinc-300"><LogIn className="size-4" /><span className="text-xs sm:text-sm"><strong>User Portal Email:</strong> {p.demo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.demo.password}</span></div>)}
+              {p.repoUrl && (<a href={p.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <LinkIcon className="size-4" /> Code</a>)}
             </div>
+            
+            {(p.adminDemo || p.demo) && (
+               <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-slate-700 flex flex-col gap-2">
+                 {p.adminDemo && (<div className="inline-flex items-center gap-2 text-zinc-700 dark:text-zinc-300"><LogIn className="size-4 text-sky-500" /><span className="text-xs sm:text-sm"><strong>Admin:</strong> {p.adminDemo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.adminDemo.password}</span></div>)}
+                 {p.demo && (<div className="inline-flex items-center gap-2 text-zinc-700 dark:text-zinc-300"><LogIn className="size-4 text-sky-500" /><span className="text-xs sm:text-sm"><strong>User:</strong> {p.demo.username} &nbsp;|&nbsp; <strong>Pass:</strong> {p.demo.password}</span></div>)}
+               </div>
+            )}
           </div>
         </article>
       ))}
@@ -314,10 +328,10 @@ const GallerySlider = () => {
           <img src={DATA.gallery[index].image} alt={DATA.gallery[index].name} className="w-full h-full object-contain" />
         </motion.div>
         <div className="absolute inset-0 flex justify-between items-center px-3">
-          <button onClick={prev} className="p-2 rounded-full bg-white/70 shadow hover:scale-105 transition dark:bg-slate-800/70" aria-label="Previous">
+          <button onClick={prev} className="p-2 rounded-full bg-white/70 shadow hover:scale-105 transition dark:bg-slate-800/70 text-zinc-800 dark:text-white" aria-label="Previous">
             <ChevronLeft className="size-5" />
           </button>
-          <button onClick={next} className="p-2 rounded-full bg-white/70 shadow hover:scale-105 transition dark:bg-slate-800/70" aria-label="Next">
+          <button onClick={next} className="p-2 rounded-full bg-white/70 shadow hover:scale-105 transition dark:bg-slate-800/70 text-zinc-800 dark:text-white" aria-label="Next">
             <ChevronRight className="size-5" />
           </button>
         </div>
@@ -325,7 +339,7 @@ const GallerySlider = () => {
           <ImageIcon className="size-4 text-sky-500" /> {DATA.gallery[index].name}
         </div>
       </div>
-      <div className="mt-4 flex justify-center gap-2">
+      <div className="mt-4 flex justify-center gap-2 flex-wrap max-w-xl mx-auto">
         {DATA.gallery.map((_, i) => (
           <button key={i} onClick={() => setIndex(i)} className={`h-2 w-2 rounded-full transition ${i === index ? "bg-sky-500" : "bg-zinc-300 dark:bg-zinc-600"}`} />
         ))}
@@ -336,13 +350,13 @@ const GallerySlider = () => {
 
 const Contact = () => (
   <Section id="contact" title="Contact">
-    <div className="rounded-2xl border border-zinc-200 p-6 bg-white/80 backdrop-blur shadow-sm dark:border-slate-700 dark:bg-slate-800/60">
-      <p className="text-zinc-700 dark:text-zinc-300">Open to new roles, contracts, and collaborations in fintech, SaaS, and Web3. Feel free to reach out.</p>
-      <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
-        <a href={`mailto:${DATA.email}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <Mail className="size-4" /> {DATA.email}</a>
-        <a href={`tel:${DATA.phone}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <Phone className="size-4" /> {DATA.phone}</a>
-        <a href={DATA.links.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <Github className="size-4" /> GitHub</a>
-        <a href={DATA.links.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow dark:border-slate-700 dark:bg-slate-800/60"> <Linkedin className="size-4" /> LinkedIn</a>
+    <div className="rounded-2xl border border-zinc-200 p-6 sm:p-8 bg-white/80 backdrop-blur shadow-sm dark:border-slate-700 dark:bg-slate-800/60">
+      <p className="text-zinc-700 dark:text-zinc-300 text-lg">Open to new roles, contracts, and collaborations in fintech, SaaS, and Web3. Feel free to reach out.</p>
+      <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
+        <a href={`mailto:${DATA.email}`} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow hover:-translate-y-0.5 transition dark:border-slate-700 dark:bg-slate-800/60"> <Mail className="size-4 text-sky-500" /> {DATA.email}</a>
+        <a href={`tel:${DATA.phone}`} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow hover:-translate-y-0.5 transition dark:border-slate-700 dark:bg-slate-800/60"> <Phone className="size-4 text-sky-500" /> {DATA.phone}</a>
+        <a href={DATA.links.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow hover:-translate-y-0.5 transition dark:border-slate-700 dark:bg-slate-800/60"> <Github className="size-4 text-sky-500" /> GitHub</a>
+        <a href={DATA.links.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 bg-white/80 shadow-sm hover:shadow hover:-translate-y-0.5 transition dark:border-slate-700 dark:bg-slate-800/60"> <Linkedin className="size-4 text-sky-500" /> LinkedIn</a>
       </div>
     </div>
   </Section>
@@ -368,10 +382,6 @@ export default function App() {
     <div className="min-h-dvh bg-gradient-to-b from-sky-50 via-white to-fuchsia-50 text-zinc-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-zinc-100">
       <Navbar dark={dark} setDark={setDark} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">Last updated: {new Date().toLocaleDateString()}</span>
-          <a href="#about" className="text-sm hover:underline">Back to top</a>
-        </div>
       </div>
       <Hero />
       <Skills />
